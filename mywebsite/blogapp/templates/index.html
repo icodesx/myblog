@@ -7,13 +7,16 @@
     {% for post in object_list %}
         <li>
             <a href="{% url 'post' post.pk %}">{{ post.title }}</a> - 
-            {{ post.author.first_name }} {{ post.author.last_name }} 
-            <small>
-                <a href="{% url 'edit-post' post.pk %}">(Edit)</a> - 
-                <a href="{% url 'delete-post' post.pk %}">(Delete)</a>
-            </small>
+            {{ post.author.first_name }} {{ post.author.last_name }}
+            
+            {% if user.is_authenticated %}
+                <small>
+                    <a href="{% url 'edit-post' post.pk %}">(Edit)</a> - 
+                    <a href="{% url 'delete-post' post.pk %}">(Delete)</a>
+                </small>
+            {% endif %}
             <br>
-            {{ post.body }}
+            {{ post.body|slice:':200' }}
         </li>
     {% endfor %}
     </ul>

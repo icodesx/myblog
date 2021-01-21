@@ -5,14 +5,21 @@
 {% endblock %}
 
 {% block content %}
-    <h1>Add blog post</h1>
 
-    <div class="form-group">
-        <form method="POST">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button class="btn btn-primary">Post</button>
-        </form>
-    </div>
+    {% if user.is_authenticated %}
+        <h1>Add blog post</h1>
+
+        <div class="form-group">
+            <form method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button class="btn btn-primary">Post</button>
+            </form>
+        </div>
+    {% else %}
+        <div class="alert alert-danger" role="alert">
+            You don't have the credentials to access this page.
+        </div>
+    {% endif %}
 
 {% endblock %}
