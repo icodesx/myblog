@@ -16,6 +16,12 @@
                 <button class="btn btn-primary">Post</button>
             </form>
         </div>
+
+        <script>
+            var name = '{{ user.id }}';
+            document.getElementById('author-box').value = name;
+        </script>
+
     {% else %}
         <div class="alert alert-danger" role="alert">
             You don't have the credentials to access this page.
