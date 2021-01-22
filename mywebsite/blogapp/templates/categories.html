@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    {% if category_posts %}
+
+        <h1>{{ cats }} category</h1>
+
+            {% for post in category_posts %}
+                <li>
+                    {{ post.title }}
+                </li>
+            {% endfor %}
+
+    {% else %}
+        <div class="alert alert-warning" role="alert">
+            Sorry! This page doesn't exist
+        </div>
+    {% endif %}
+{% endblock %}

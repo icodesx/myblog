@@ -13,6 +13,11 @@ class IndexView(ListView):
     ordering = ['-post_date']
 
 
+def CategoryView(request, cats):
+    category_posts = Post.objects.filter(category=cats)
+    return render(request, 'categories.html', {'cats': cats.title(), 'category_posts': category_posts})
+
+
 class PostView(DetailView):
     model = Post
     template_name = 'post.html'
