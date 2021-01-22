@@ -6,7 +6,7 @@
 
 {% block content %}
 
-    {% if user.is_authenticated %}
+    {% if user.is_authenticated and user.id == post.author.id %}
         <h1>Edit</h1>
 
         <div class="form-group">
