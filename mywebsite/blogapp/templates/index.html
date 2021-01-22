@@ -8,7 +8,7 @@
         <li>
             <a href="{% url 'post' post.pk %}">{{ post.title }}</a> - 
             {{ post.author.first_name }} {{ post.author.last_name }} - 
-            <a href="{% url 'category' post.category %}">[{{ post.category }}]</a>
+            <a href="{% url 'category' post.category|slugify %}">[{{ post.category }}]</a>
             
             {% if user.is_authenticated %}
                 <small>
