@@ -19,6 +19,14 @@
 
 <p>{{ post.body|safe }}</p>
 
+<hr>
+
+<form action="{% url 'like-post' post.pk %}" method="POST">
+    {% csrf_token %}
+    <button type="submit" name="post_id" value="{{ post.id }}" class="btn btn-success btn-sm">Like</button> - 
+    {{ total_likes }} Likes
+</form>
+
 <br>
 
 <a href="{% url 'index' %}" class="btn btn-dark">Back to home</a>
