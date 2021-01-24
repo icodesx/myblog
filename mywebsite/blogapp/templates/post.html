@@ -16,6 +16,10 @@
 </small>
 
 <hr>
+    {% if post.header_image %}
+        <image src='{{ post.header_image.url }}'></image>
+        <br>
+    {% endif %}
 
 <p>{{ post.body|safe }}</p>
 
@@ -24,7 +28,7 @@
 <form action="{% url 'like-post' post.pk %}" method="POST">
     {% csrf_token %}
 
-    {% if user.is_authenticated and user.id == post.author.id %}
+    {% if user.is_authenticated %}
 
         {% if liked %}
             <button type="submit" name="post_id" value="{{ post.id }}" class="btn btn-danger btn-sm">Unlike</button>
