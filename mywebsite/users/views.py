@@ -7,7 +7,6 @@ from .forms import SignUpForm, EditProfileForm, PasswordChangingForm
 from django.contrib.auth.views import PasswordChangeView
 from django.views.generic import DetailView, UpdateView, CreateView
 from blogapp.models import Profile
-from django.urls import reverse
 from .forms import ProfilePageForm
 
 # Create your views here.
