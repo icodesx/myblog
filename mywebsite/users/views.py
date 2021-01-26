@@ -1,11 +1,37 @@
-from django.shortcuts import render
+from django.db import models
+from django.shortcuts import get_object_or_404, render
 from django.views import generic
 from django.contrib.auth.forms import PasswordChangeForm, UserCreationForm, UserChangeForm
 from django.urls import reverse_lazy
 from .forms import SignUpForm, EditProfileForm, PasswordChangingForm
 from django.contrib.auth.views import PasswordChangeView
+from django.views.generic import DetailView, UpdateView
+from blogapp.models import Profile
+from django.urls import reverse
+from django.http import HttpResponseRedirect
 
 # Create your views here.
+
+
+class EditProfilePageView(UpdateView):
+    model = Profile
+    template_name = 'registration/edit-profile-page.html'
+    fields = ['bio', 'profile_pic', 'website_url', 'github_url']
+    success_url = reverse_lazy('index')
+
+
+class ProfilePageView(DetailView):
+    model = Profile
+    template_name = 'registration/user-profile.html'
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(ProfilePageView, self).get_context_data(
+            *args, **kwargs)
+
+        page_user = get_object_or_404(Profile, id=self.kwargs['pk'])
+
+        context['page_user'] = page_user
+        return context
 
 
 class PasswordsChangeView(PasswordChangeView):
