@@ -5,12 +5,22 @@ from django.contrib.auth.forms import PasswordChangeForm, UserCreationForm, User
 from django.urls import reverse_lazy
 from .forms import SignUpForm, EditProfileForm, PasswordChangingForm
 from django.contrib.auth.views import PasswordChangeView
-from django.views.generic import DetailView, UpdateView
+from django.views.generic import DetailView, UpdateView, CreateView
 from blogapp.models import Profile
 from django.urls import reverse
-from django.http import HttpResponseRedirect
+from .forms import ProfilePageForm
 
 # Create your views here.
+
+
+class CreateProfilePageView(CreateView):
+    model = Profile
+    form_class = ProfilePageForm
+    template_name = 'registration/create-profile-page.html'
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
 
 
 class EditProfilePageView(UpdateView):

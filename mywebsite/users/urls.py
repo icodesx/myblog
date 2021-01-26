@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import UserRegisterView, UserEditView, PasswordsChangeView, ProfilePageView, EditProfilePageView
+from .views import UserRegisterView, UserEditView, PasswordsChangeView, ProfilePageView, EditProfilePageView, CreateProfilePageView
 #from django.contrib.auth import views as auth_views
 
 urlpatterns = [
@@ -9,4 +9,6 @@ urlpatterns = [
     path('<int:pk>/profile/', ProfilePageView.as_view(), name='profile-page'),
     path('<int:pk>/edit-profile-page/',
          EditProfilePageView.as_view(), name='edit-profile-page'),
+    path('create-profile-page/',
+         CreateProfilePageView.as_view(), name='create-profile-page'),
 ]

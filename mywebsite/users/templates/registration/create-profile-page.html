@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Create a new profile
+{% endblock %}
+
+{% block content %}
+
+    {% if user.is_authenticated %}
+        <h1>Create your profile page!</h1>
+
+        <div class="form-group">
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button class="btn btn-primary">Create profile page</button>
+            </form>
+        </div>
+
+    {% else %}
+        <div class="alert alert-danger" role="alert">
+            You don't have the credentials to access this page.
+        </div>
+    {% endif %}
+
+    <br>
+
+{% endblock %}
