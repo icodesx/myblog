@@ -15,7 +15,7 @@
             </div>
           <div class="col-md-10">
             <div class="card-body">
-              <h5 class="card-title"><a href="{% url 'profile-page' post.author.profile.id %}">{{ page_user.user.first_name }} {{ page_user.user.last_name }}</a></h5>
+              <h5 class="card-title"><a href="{% url 'profile-page' page_user.user.id %}">{{ page_user.user.first_name }} {{ page_user.user.last_name }}</a></h5>
               <p class="small text-muted">
                 {% if page_user.website_url %}
                     <a href="{{ page_user.website_url }}">Website</a> | 
